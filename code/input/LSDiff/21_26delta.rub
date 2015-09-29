@@ -1,0 +1,14 @@
+#include "deltaKB_lsdPred.rub"
+// Orig. Deleted	0
+// Orig. Added	9
+// Red. Deleted	0
+// Red. Added	9
+added_calls("edu.washington.cs.lsd.rule%.LSDFact#createLSDFact(edu.washington.cs.lsd.rule%.LSDPredicate,java.lang%.String,boolean)","java.io%.PrintStream#print(java.lang%.String)").
+added_calls("edu.washington.cs.lsd.rule%.LSDFact#createLSDFact(edu.washington.cs.lsd.rule%.LSDPredicate,java.lang%.String,boolean)","java.lang%.String#equals(java.lang%.Object)").
+added_calls("edu.washington.cs.lsd.rule%.LSDFact#createLSDFact(edu.washington.cs.lsd.rule%.LSDPredicate,java.lang%.String,boolean)","java.lang%.String#indexOf(int)").
+added_calls("edu.washington.cs.lsd.rule%.LSDFact#createLSDFact(edu.washington.cs.lsd.rule%.LSDPredicate,java.lang%.String,boolean)","java.lang%.String#indexOf(int,int)").
+added_calls("edu.washington.cs.lsd.rule.io%.LSDAlchemyRuleReader#<init>(java.io%.File)","java.lang%.String#charAt(int)").
+added_calls("edu.washington.cs.lsd.rule.io%.LSDAlchemyRuleReader#<init>(java.io%.File)","java.lang%.String#equals(java.lang%.Object)").
+added_calls("edu.washington.cs.lsd.rule.io%.LSDAlchemyRuleReader#<init>(java.io%.File)","java.lang%.String#trim()").
+added_calls("edu.washington.cs.lsd.rule.io%.LSDTyrubaRuleChecker#invokeQuery(edu.washington.cs.lsd.rule%.LSDRule,boolean)","java.util%.HashMap<LSDVariable,String>#put(edu.washington.cs.lsd.rule%.LSDVariable,java.lang%.String)").
+added_calls("edu.washington.cs.lsd.rule.io%.LSDTyrubaRuleChecker#invokeQuery(edu.washington.cs.lsd.rule%.LSDRule,boolean)","java.util%.LinkedHashMap<LSDVariable,String>#<init>()").

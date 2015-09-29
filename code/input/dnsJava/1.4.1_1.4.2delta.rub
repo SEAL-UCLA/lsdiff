@@ -1,0 +1,18 @@
+#include "deltaKB_lsdPred.rub"
+// Orig. Deleted	2
+// Orig. Added	11
+// Red. Deleted	2
+// Red. Added	11
+deleted_calls("org.xbill.DNS%.Record#getTypedObject(int)","java.lang%.String#length()").
+deleted_calls("org.xbill.DNS%.Record#getTypedObject(int)","java.lang%.String#substring(int,int)").
+added_accesses("org.xbill.DNS%.Lookup#badresponse","org.xbill.DNS%.Lookup#processResponse(org.xbill.DNS%.Name,org.xbill.DNS%.SetResponse)").
+added_accesses("org.xbill.DNS%.Lookup#timedout","org.xbill.DNS%.Lookup#follow(org.xbill.DNS%.Name,org.xbill.DNS%.Name)").
+added_accesses("org.xbill.DNS%.Lookup#timedout","org.xbill.DNS%.Lookup#lookup(org.xbill.DNS%.Name)").
+added_accesses("org.xbill.DNS%.Lookup#timedout","org.xbill.DNS%.Lookup#run()").
+added_calls("org.xbill.DNS%.Lookup#processResponse(org.xbill.DNS%.Name,org.xbill.DNS%.SetResponse)","org.xbill.DNS%.SetResponse#isDelegation()").
+added_calls("org.xbill.DNS%.Record#getTypedObject(int)","java.lang%.StringBuffer#<init>(java.lang%.String)").
+added_calls("org.xbill.DNS%.Record#getTypedObject(int)","java.lang%.StringBuffer#insert(int,java.lang%.String)").
+added_calls("org.xbill.DNS%.Record#getTypedObject(int)","java.lang%.StringBuffer#lastIndexOf(java.lang%.String)").
+added_calls("org.xbill.DNS%.Record#getTypedObject(int)","java.lang%.StringBuffer#toString()").
+added_field("org.xbill.DNS%.Lookup#timedout","timedout","org.xbill.DNS%.Lookup").
+added_fieldoftype("org.xbill.DNS%.Lookup#timedout","boolean").

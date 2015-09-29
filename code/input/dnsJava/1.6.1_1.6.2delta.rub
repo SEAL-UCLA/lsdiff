@@ -1,0 +1,18 @@
+#include "deltaKB_lsdPred.rub"
+// Orig. Deleted	2
+// Orig. Added	11
+// Red. Deleted	2
+// Red. Added	11
+deleted_accesses("org.xbill.DNS%.Lookup#badresponse","org.xbill.DNS%.Lookup#processResponse(org.xbill.DNS%.Name,org.xbill.DNS%.SetResponse)").
+deleted_accesses("org.xbill.DNS%.Lookup#badresponse_error","org.xbill.DNS%.Lookup#processResponse(org.xbill.DNS%.Name,org.xbill.DNS%.SetResponse)").
+added_accesses("org.xbill.DNS%.Lookup#referral","org.xbill.DNS%.Lookup#follow(org.xbill.DNS%.Name,org.xbill.DNS%.Name)").
+added_accesses("org.xbill.DNS%.Lookup#referral","org.xbill.DNS%.Lookup#processResponse(org.xbill.DNS%.Name,org.xbill.DNS%.SetResponse)").
+added_accesses("org.xbill.DNS%.Lookup#referral","org.xbill.DNS%.Lookup#run()").
+added_accesses("org.xbill.DNS%.Record#empty","org.xbill.DNS%.Record#compareTo(java.lang%.Object)").
+added_accesses("org.xbill.DNS%.Record#empty","org.xbill.DNS%.Record#equals(java.lang%.Object)").
+added_accesses("org.xbill.DNS%.Record#empty","org.xbill.DNS%.Record#rdataToWireCanonical()").
+added_calls("%.lookup#main(java.lang%.String[])","org.xbill.DNS%.Lookup#setDefaultResolver(org.xbill.DNS%.Resolver)").
+added_calls("%.lookup#main(java.lang%.String[])","org.xbill.DNS%.Resolver#setPort(int)").
+added_calls("%.lookup#main(java.lang%.String[])","org.xbill.DNS%.SimpleResolver#<init>(java.lang%.String)").
+added_field("org.xbill.DNS%.Lookup#referral","referral","org.xbill.DNS%.Lookup").
+added_fieldoftype("org.xbill.DNS%.Lookup#referral","boolean").

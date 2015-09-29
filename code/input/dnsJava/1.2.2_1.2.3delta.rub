@@ -1,0 +1,9 @@
+#include "deltaKB_lsdPred.rub"
+// Orig. Deleted	0
+// Orig. Added	4
+// Red. Deleted	0
+// Red. Added	4
+added_accesses("org.xbill.DNS%.DClass#ANY","%.update#sendUpdate()").
+added_accesses("org.xbill.DNS%.DClass#NONE","%.update#sendUpdate()").
+added_calls("%.update#doDelete(org.xbill.DNS.utils%.MyStringTokenizer)","org.xbill.DNS%.DClass#value(java.lang%.String)").
+added_calls("%.update#sendUpdate()","java.util%.Enumeration#hasMoreElements()").

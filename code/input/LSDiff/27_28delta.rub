@@ -1,0 +1,7 @@
+#include "deltaKB_lsdPred.rub"
+// Orig. Deleted	0
+// Orig. Added	2
+// Red. Deleted	0
+// Red. Added	2
+added_calls("edu.washington.cs.lsd.factbase%.LSDFactBase#main(java.lang%.String[])","edu.washington.cs.lsd.factbase%.LSDFactBase#getRemainingFacts(boolean)").
+added_calls("edu.washington.cs.lsd.factbase%.LSDFactBase#main(java.lang%.String[])","java.io%.PrintStream#print(java.lang%.String)").

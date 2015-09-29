@@ -1,0 +1,15 @@
+#include "deltaKB_lsdPred.rub"
+// Orig. Deleted	6
+// Orig. Added	4
+// Red. Deleted	6
+// Red. Added	4
+deleted_calls("%.update#doAssert(org.xbill.DNS.utils%.MyStringTokenizer)","java.lang%.Short#<init>(short)").
+deleted_calls("%.update#doAssert(org.xbill.DNS.utils%.MyStringTokenizer)","java.lang%.Short#parseShort(java.lang%.String)").
+deleted_calls("%.update#doAssert(org.xbill.DNS.utils%.MyStringTokenizer)","java.lang%.Short#toString()").
+deleted_calls("org.xbill.DNS%.Header#<init>(org.xbill.DNS.utils%.DataByteInputStream)","org.xbill.DNS.utils%.DataByteInputStream#readShort()").
+deleted_fieldoftype("org.xbill.DNS%.Header#counts","short[]").
+deleted_return("org.xbill.DNS%.Header#getCount(int)","short").
+added_accesses("org.xbill.DNS%.Name#root","org.xbill.DNS%.FindServer#probe()").
+added_calls("org.xbill.DNS%.FindServer#probe()","java.lang%.System#arraycopy(java.lang%.Object,int,java.lang%.Object,int,int)").
+added_fieldoftype("org.xbill.DNS%.Header#counts","int[]").
+added_return("org.xbill.DNS%.Header#getCount(int)","int").

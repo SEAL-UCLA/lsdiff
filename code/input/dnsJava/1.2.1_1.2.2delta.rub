@@ -1,0 +1,129 @@
+#include "deltaKB_lsdPred.rub"
+// Orig. Deleted	94
+// Orig. Added	182
+// Red. Deleted	14
+// Red. Added	102
+//Method Renaming
+//[:jnamed-addRRset__[Name, Message, RRset, byte, boolean]->void->:jnamed-addRRset__[Name, Message, RRset, byte, int]->void]
+//[:jnamed-addAnswer__[Message, Name, short, short, int]->byte->:jnamed-addAnswer__[Message, Name, short, short, int, int]->byte]
+//[:jnamed-addNS__[Message, Zone]->void->:jnamed-addNS__[Message, Zone, int]->void]
+//[:jnamed-addAdditional2__[Message, int]->void->:jnamed-addAdditional2__[Message, int, int]->void]
+//[:jnamed-addGlue__[Message, Name]->void->:jnamed-addGlue__[Message, Name, int]->void]
+//[:jnamed-addAdditional__[Message]->void->:jnamed-addAdditional__[Message, int]->void]
+
+deleted_accesses("org.xbill.DNS%.KEYRecord#key","org.xbill.DNS%.KEYRecord#getFootprint()").
+deleted_accesses("org.xbill.DNS%.Name#byteFormat","org.xbill.DNS%.Name#toString()").
+deleted_accesses("org.xbill.DNS%.Name#root","org.xbill.DNS%.OPTRecord#<init>(short,byte,byte)").
+deleted_accesses("org.xbill.DNS%.OPTRecord#options","org.xbill.DNS%.OPTRecord#<init>(short,byte,byte)").
+deleted_accesses("org.xbill.DNS%.Type#OPT","org.xbill.DNS%.OPTRecord#<init>(short,byte,byte)").
+deleted_calls("%.jnamed#addGlue(org.xbill.DNS%.Message,org.xbill.DNS%.Name)","java.util%.Enumeration#hasMoreElements()").
+deleted_calls("%.jnamed#addGlue(org.xbill.DNS%.Message,org.xbill.DNS%.Name)","java.util%.Enumeration#nextElement()").
+deleted_calls("%.jnamed#addGlue(org.xbill.DNS%.Message,org.xbill.DNS%.Name)","org.xbill.DNS%.Message#addRecord(org.xbill.DNS%.Record,int)").
+deleted_calls("%.jnamed#addGlue(org.xbill.DNS%.Message,org.xbill.DNS%.Name)","org.xbill.DNS%.Message#findRRset(org.xbill.DNS%.Name,short)").
+deleted_calls("%.jnamed#addGlue(org.xbill.DNS%.Message,org.xbill.DNS%.Name)","org.xbill.DNS%.RRset#rrs()").
+deleted_calls("%.jnamed#addGlue(org.xbill.DNS%.Message,org.xbill.DNS%.Name)","org.xbill.DNS%.RRset#sigs()").
+deleted_calls("org.xbill.DNS%.Name#toString()","java.lang%.StringBuffer#append(char)").
+deleted_calls("org.xbill.DNS%.Name#toString()","java.text%.NumberFormat#format(long)").
+deleted_calls("org.xbill.DNS%.OPTRecord#<init>(short,byte,byte)","org.xbill.DNS%.Record#<init>(org.xbill.DNS%.Name,short,short,int)").
+added_accesses("%.jnamed#FLAG_DNSSECOK","%.jnamed#addRRset(org.xbill.DNS%.Name,org.xbill.DNS%.Message,org.xbill.DNS%.RRset,byte,int)").
+added_accesses("%.jnamed#FLAG_DNSSECOK","%.jnamed#doAXFR(org.xbill.DNS%.Name,org.xbill.DNS%.Message,java.net%.Socket)").
+added_accesses("%.jnamed#FLAG_DNSSECOK","%.jnamed#generateReply(org.xbill.DNS%.Message,byte[],java.net%.Socket)").
+added_accesses("%.jnamed#FLAG_SIGONLY","%.jnamed#addAnswer(org.xbill.DNS%.Message,org.xbill.DNS%.Name,short,short,int,int)").
+added_accesses("%.jnamed#FLAG_SIGONLY","%.jnamed#addRRset(org.xbill.DNS%.Name,org.xbill.DNS%.Message,org.xbill.DNS%.RRset,byte,int)").
+added_accesses("org.xbill.DNS%.BitString#data","org.xbill.DNS%.BitString#compareBits(org.xbill.DNS%.BitString,int)").
+added_accesses("org.xbill.DNS%.BitString#data","org.xbill.DNS%.BitString#join(org.xbill.DNS%.BitString)").
+added_accesses("org.xbill.DNS%.BitString#nbits","org.xbill.DNS%.BitString#compareBits(org.xbill.DNS%.BitString,int)").
+added_accesses("org.xbill.DNS%.BitString#nbits","org.xbill.DNS%.BitString#compareTo(java.lang%.Object)").
+added_accesses("org.xbill.DNS%.BitString#nbits","org.xbill.DNS%.BitString#join(org.xbill.DNS%.BitString)").
+added_accesses("org.xbill.DNS%.BitString#nbits","org.xbill.DNS%.Name#compact()").
+added_accesses("org.xbill.DNS%.BitString#nbits","org.xbill.DNS%.Name#compareTo(java.lang%.Object)").
+added_accesses("org.xbill.DNS%.Flags#DO","%.dig#main(java.lang%.String[])").
+added_accesses("org.xbill.DNS%.Flags#DO","%.jnamed#generateReply(org.xbill.DNS%.Message,byte[],java.net%.Socket)").
+added_accesses("org.xbill.DNS%.KEYRecord#footprint","org.xbill.DNS%.KEYRecord#getFootprint()").
+added_accesses("org.xbill.DNS%.Master#br","org.xbill.DNS%.Master#<init>(java.io%.BufferedReader,org.xbill.DNS%.Name)").
+added_accesses("org.xbill.DNS%.Master#origin","org.xbill.DNS%.Master#<init>(java.io%.BufferedReader,org.xbill.DNS%.Name)").
+added_accesses("org.xbill.DNS%.Name#byteFormat","org.xbill.DNS%.Name#byteString(byte[])").
+added_accesses("org.xbill.DNS%.Name#labels","org.xbill.DNS%.Name#compact()").
+added_accesses("org.xbill.DNS%.Name#labels","org.xbill.DNS%.Name#compareTo(java.lang%.Object)").
+added_accesses("org.xbill.DNS%.Name#name","org.xbill.DNS%.Name#compact()").
+added_accesses("org.xbill.DNS%.Name#name","org.xbill.DNS%.Name#compareTo(java.lang%.Object)").
+added_accesses("org.xbill.DNS%.Name#name","org.xbill.DNS%.Name#getLabelString(int)").
+added_accesses("org.xbill.DNS%.Name#root","org.xbill.DNS%.OPTRecord#<init>(short,byte,byte,int)").
+added_accesses("org.xbill.DNS%.OPTRecord#options","org.xbill.DNS%.OPTRecord#<init>(short,byte,byte,int)").
+added_accesses("org.xbill.DNS%.Record#ttl","org.xbill.DNS%.OPTRecord#getFlags()").
+added_accesses("org.xbill.DNS%.Section#ADDITIONAL","%.dig#main(java.lang%.String[])").
+added_accesses("org.xbill.DNS%.Type#OPT","org.xbill.DNS%.OPTRecord#<init>(short,byte,byte,int)").
+added_accesses("org.xbill.DNS.utils%.MyStringTokenizer#putBack","org.xbill.DNS.utils%.MyStringTokenizer#hasMoreTokens()").
+added_calls("%.dig#main(java.lang%.String[])","java.io%.PrintStream#println(java.lang%.Object)").
+added_calls("%.dig#main(java.lang%.String[])","org.xbill.DNS%.Message#addRecord(org.xbill.DNS%.Record,int)").
+added_calls("%.dig#main(java.lang%.String[])","org.xbill.DNS%.OPTRecord#<init>(short,byte,byte,int)").
+added_calls("%.jnamed#addGlue(org.xbill.DNS%.Message,org.xbill.DNS%.Name,int)","%.jnamed#addRRset(org.xbill.DNS%.Name,org.xbill.DNS%.Message,org.xbill.DNS%.RRset,byte,int)").
+added_calls("%.jnamed#generateReply(org.xbill.DNS%.Message,byte[],java.net%.Socket)","org.xbill.DNS%.OPTRecord#getFlags()").
+added_calls("org.xbill.DNS%.AAAARecord#rrToWire(org.xbill.DNS.utils%.DataByteOutputStream,org.xbill.DNS%.Compression)","java.io%.OutputStream#write(byte[])").
+added_calls("org.xbill.DNS%.BitString#compareBits(org.xbill.DNS%.BitString,int)","java.lang%.IllegalArgumentException#<init>()").
+added_calls("org.xbill.DNS%.BitString#compareBits(org.xbill.DNS%.BitString,int)","org.xbill.DNS%.BitString#getBit(byte[],int)").
+added_calls("org.xbill.DNS%.BitString#compareTo(java.lang%.Object)","org.xbill.DNS%.BitString#compareBits(org.xbill.DNS%.BitString,int)").
+added_calls("org.xbill.DNS%.BitString#join(org.xbill.DNS%.BitString)","java.lang%.System#arraycopy(java.lang%.Object,int,java.lang%.Object,int,int)").
+added_calls("org.xbill.DNS%.BitString#join(org.xbill.DNS%.BitString)","org.xbill.DNS%.BitString#getBit(byte[],int)").
+added_calls("org.xbill.DNS%.BitString#join(org.xbill.DNS%.BitString)","org.xbill.DNS%.BitString#setBit(byte[],int,int)").
+added_calls("org.xbill.DNS%.KEYRecord#getFootprint()","java.io%.ByteArrayOutputStream#toByteArray()").
+added_calls("org.xbill.DNS%.KEYRecord#getFootprint()","org.xbill.DNS%.KEYRecord#rrToWire(org.xbill.DNS.utils%.DataByteOutputStream,org.xbill.DNS%.Compression)").
+added_calls("org.xbill.DNS%.KEYRecord#getFootprint()","org.xbill.DNS.utils%.DataByteOutputStream#<init>()").
+added_calls("org.xbill.DNS%.Master#<init>(java.io%.BufferedReader)","org.xbill.DNS%.Master#<init>(java.io%.BufferedReader,org.xbill.DNS%.Name)").
+added_calls("org.xbill.DNS%.Name#<init>(java.lang%.String,org.xbill.DNS%.Name)","org.xbill.DNS%.Name#compact()").
+added_calls("org.xbill.DNS%.Name#<init>(org.xbill.DNS.utils%.DataByteInputStream,org.xbill.DNS%.Compression)","org.xbill.DNS%.Name#compact()").
+added_calls("org.xbill.DNS%.Name#append(org.xbill.DNS%.Name)","org.xbill.DNS%.Name#compact()").
+added_calls("org.xbill.DNS%.Name#byteString(byte[])","java.lang%.StringBuffer#<init>()").
+added_calls("org.xbill.DNS%.Name#byteString(byte[])","java.lang%.StringBuffer#append(char)").
+added_calls("org.xbill.DNS%.Name#byteString(byte[])","java.lang%.StringBuffer#append(java.lang%.String)").
+added_calls("org.xbill.DNS%.Name#byteString(byte[])","java.lang%.StringBuffer#toString()").
+added_calls("org.xbill.DNS%.Name#byteString(byte[])","java.text%.NumberFormat#format(long)").
+added_calls("org.xbill.DNS%.Name#compact()","java.lang%.System#arraycopy(java.lang%.Object,int,java.lang%.Object,int,int)").
+added_calls("org.xbill.DNS%.Name#compact()","org.xbill.DNS%.BitString#join(org.xbill.DNS%.BitString)").
+added_calls("org.xbill.DNS%.Name#compareTo(java.lang%.Object)","java.lang%.Object#getClass()").
+added_calls("org.xbill.DNS%.Name#compareTo(java.lang%.Object)","org.xbill.DNS%.BitString#compareBits(org.xbill.DNS%.BitString,int)").
+added_calls("org.xbill.DNS%.Name#compareTo(java.lang%.Object)","org.xbill.DNS%.Name#toLower(byte)").
+added_calls("org.xbill.DNS%.Name#fromDNAME(org.xbill.DNS%.DNAMERecord)","org.xbill.DNS%.Name#compact()").
+added_calls("org.xbill.DNS%.Name#getLabelString(int)","java.lang%.Object#toString()").
+added_calls("org.xbill.DNS%.Name#getLabelString(int)","org.xbill.DNS%.Name#byteString(byte[])").
+added_calls("org.xbill.DNS%.Name#toString()","org.xbill.DNS%.Name#byteString(byte[])").
+added_calls("org.xbill.DNS%.OPTRecord#<init>(short,byte,byte)","org.xbill.DNS%.OPTRecord#<init>(short,byte,byte,int)").
+added_calls("org.xbill.DNS%.OPTRecord#<init>(short,byte,byte,int)","org.xbill.DNS%.Record#<init>(org.xbill.DNS%.Name,short,short,int)").
+added_calls("org.xbill.DNS%.OPTRecord#rdataToString()","org.xbill.DNS%.OPTRecord#getFlags()").
+added_calls("org.xbill.DNS%.SimpleResolver#send(org.xbill.DNS%.Message)","org.xbill.DNS%.Message#getOPT()").
+added_calls("org.xbill.DNS%.SimpleResolver#send(org.xbill.DNS%.Message)","org.xbill.DNS%.OPTRecord#getPayloadSize()").
+added_calls("org.xbill.DNS%.SimpleResolver#send(org.xbill.DNS%.Message)","org.xbill.DNS%.OPTRecord#getVersion()").
+added_field("%.jnamed#FLAG_DNSSECOK","FLAG_DNSSECOK","%.jnamed").
+added_field("%.jnamed#FLAG_SIGONLY","FLAG_SIGONLY","%.jnamed").
+added_field("org.xbill.DNS%.Flags#DO","DO","org.xbill.DNS%.Flags").
+added_field("org.xbill.DNS%.KEYRecord#footprint","footprint","org.xbill.DNS%.KEYRecord").
+added_fieldoftype("%.jnamed#FLAG_DNSSECOK","int").
+added_fieldoftype("%.jnamed#FLAG_SIGONLY","int").
+added_fieldoftype("org.xbill.DNS%.Flags#DO","int").
+added_fieldoftype("org.xbill.DNS%.KEYRecord#footprint","int").
+added_method("org.xbill.DNS%.BitString#compareBits(org.xbill.DNS%.BitString,int)","compareBits(org.xbill.DNS%.BitString,int)","org.xbill.DNS%.BitString").
+added_method("org.xbill.DNS%.BitString#compareTo(java.lang%.Object)","compareTo(java.lang%.Object)","org.xbill.DNS%.BitString").
+added_method("org.xbill.DNS%.BitString#getBit(byte[],int)","getBit(byte[],int)","org.xbill.DNS%.BitString").
+added_method("org.xbill.DNS%.BitString#join(org.xbill.DNS%.BitString)","join(org.xbill.DNS%.BitString)","org.xbill.DNS%.BitString").
+added_method("org.xbill.DNS%.BitString#setBit(byte[],int,int)","setBit(byte[],int,int)","org.xbill.DNS%.BitString").
+added_method("org.xbill.DNS%.Master#<init>(java.io%.BufferedReader)","<init>(java.io%.BufferedReader)","org.xbill.DNS%.Master").
+added_method("org.xbill.DNS%.Master#<init>(java.io%.BufferedReader,org.xbill.DNS%.Name)","<init>(java.io%.BufferedReader,org.xbill.DNS%.Name)","org.xbill.DNS%.Master").
+added_method("org.xbill.DNS%.Name#byteString(byte[])","byteString(byte[])","org.xbill.DNS%.Name").
+added_method("org.xbill.DNS%.Name#compact()","compact()","org.xbill.DNS%.Name").
+added_method("org.xbill.DNS%.Name#compareTo(java.lang%.Object)","compareTo(java.lang%.Object)","org.xbill.DNS%.Name").
+added_method("org.xbill.DNS%.Name#getLabelString(int)","getLabelString(int)","org.xbill.DNS%.Name").
+added_method("org.xbill.DNS%.OPTRecord#<init>(short,byte,byte,int)","<init>(short,byte,byte,int)","org.xbill.DNS%.OPTRecord").
+added_method("org.xbill.DNS%.OPTRecord#getFlags()","getFlags()","org.xbill.DNS%.OPTRecord").
+added_return("org.xbill.DNS%.BitString#compareBits(org.xbill.DNS%.BitString,int)","int").
+added_return("org.xbill.DNS%.BitString#compareTo(java.lang%.Object)","int").
+added_return("org.xbill.DNS%.BitString#getBit(byte[],int)","int").
+added_return("org.xbill.DNS%.BitString#join(org.xbill.DNS%.BitString)","void").
+added_return("org.xbill.DNS%.BitString#setBit(byte[],int,int)","void").
+added_return("org.xbill.DNS%.Master#<init>(java.io%.BufferedReader)","void").
+added_return("org.xbill.DNS%.Master#<init>(java.io%.BufferedReader,org.xbill.DNS%.Name)","void").
+added_return("org.xbill.DNS%.Name#byteString(byte[])","java.lang%.String").
+added_return("org.xbill.DNS%.Name#compact()","void").
+added_return("org.xbill.DNS%.Name#compareTo(java.lang%.Object)","int").
+added_return("org.xbill.DNS%.Name#getLabelString(int)","java.lang%.String").
+added_return("org.xbill.DNS%.OPTRecord#<init>(short,byte,byte,int)","void").
+added_return("org.xbill.DNS%.OPTRecord#getFlags()","int").

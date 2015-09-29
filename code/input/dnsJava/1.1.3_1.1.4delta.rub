@@ -1,0 +1,14 @@
+#include "deltaKB_lsdPred.rub"
+// Orig. Deleted	0
+// Orig. Added	9
+// Red. Deleted	0
+// Red. Added	9
+added_accesses("java.lang%.System#out","org.xbill.DNS%.Name#<init>(org.xbill.DNS.utils%.DataByteInputStream,org.xbill.DNS%.Compression)").
+added_accesses("org.xbill.DNS%.Cache#maxncache","org.xbill.DNS%.Cache#addMessage(org.xbill.DNS%.Message)").
+added_accesses("org.xbill.DNS%.Cache#maxncache","org.xbill.DNS%.Cache#setMaxNCache(int)").
+added_calls("%.update#doAssert(org.xbill.DNS.utils%.MyStringTokenizer)","org.xbill.DNS%.Message#isSigned()").
+added_calls("%.update#doAssert(org.xbill.DNS.utils%.MyStringTokenizer)","org.xbill.DNS%.Message#isVerified()").
+added_field("org.xbill.DNS%.Cache#maxncache","maxncache","org.xbill.DNS%.Cache").
+added_fieldoftype("org.xbill.DNS%.Cache#maxncache","int").
+added_method("org.xbill.DNS%.Cache#setMaxNCache(int)","setMaxNCache(int)","org.xbill.DNS%.Cache").
+added_return("org.xbill.DNS%.Cache#setMaxNCache(int)","void").

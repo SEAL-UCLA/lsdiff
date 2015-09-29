@@ -1,0 +1,7 @@
+#include "deltaKB_lsdPred.rub"
+// Orig. Deleted	1
+// Orig. Added	1
+// Red. Deleted	1
+// Red. Added	1
+deleted_calls("org.xbill.DNS%.Record#getTypedObject(int)","java.lang%.StringBuffer#lastIndexOf(java.lang%.String)").
+added_calls("org.xbill.DNS%.Record#getTypedObject(int)","java.lang%.String#lastIndexOf(java.lang%.String)").

@@ -1,0 +1,407 @@
+#include "deltaKB_lsdPred.rub"
+// Orig. Deleted	640
+// Orig. Added	589
+// Red. Deleted	190
+// Red. Added	139
+//Class Renaming
+//[DNS.utils%.CountedDataInputStream->DNS.utils%.DataByteInputStream]
+//[DNS.utils%.CountedDataOutputStream->DNS.utils%.DataByteOutputStream]
+
+//Method Renaming
+//[DNS.utils:CountedDataOutputStream-writeLong__[long]->void->DNS.utils:DataByteOutputStream-writeLong__[long]->void]
+//[DNS:Header-readFlags__[CountedDataInputStream]->void->DNS:Header-readFlags__[DataByteInputStream]->void]
+//[DNS.utils:CountedDataOutputStream-CountedDataOutputStream__[OutputStream, int]->void->DNS.utils:DataByteOutputStream-DataByteOutputStream__[int]->void]
+//[DNS.utils:CountedDataOutputStream-writeByte__[int]->void->DNS.utils:DataByteOutputStream-writeByte__[int]->void]
+//[DNS.utils:CountedDataInputStream-skipBytes__[int]->int->DNS.utils:DataByteInputStream-skipBytes__[int]->void]
+//[DNS.utils:CountedDataOutputStream-writeShort__[int]->void->DNS.utils:DataByteOutputStream-writeShort__[int]->void]
+//[DNS:CNAMERecord-CNAMERecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:CNAMERecord-CNAMERecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS:Message-toWire__[CountedDataOutputStream]->void->DNS:Message-toWire__[DataByteOutputStream]->void]
+//[DNS:ARecord-ARecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:ARecord-ARecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS:Message-Message__[CountedDataInputStream]->void->DNS:Message-Message__[DataByteInputStream]->void]
+//[DNS.utils:CountedDataInputStream-getPos__[]->int->DNS.utils:DataByteInputStream-getPos__[]->int]
+//[DNS:SRVRecord-rrToWire__[Compression, int]->byte[]->DNS:SRVRecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[:update-doFile__[MyStringTokenizer, Vector]->void->:update-doFile__[MyStringTokenizer, Vector, Vector]->void]
+//[DNS:Record-toWire__[CountedDataOutputStream, int, Compression]->void->DNS:Record-toWire__[DataByteOutputStream, int, Compression]->void]
+//[DNS.utils:CountedDataOutputStream-writeInt__[int]->void->DNS.utils:DataByteOutputStream-writeInt__[int]->void]
+//[DNS:TSIGRecord-TSIGRecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:TSIGRecord-TSIGRecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS.utils:CountedDataOutputStream-CountedDataOutputStream__[OutputStream]->void->DNS.utils:DataByteOutputStream-DataByteOutputStream__[]->void]
+//[DNS.utils:CountedDataInputStream-available__[]->int->DNS.utils:DataByteInputStream-available__[]->int]
+//[DNS:SIGRecord-rrToWire__[Compression, int]->byte[]->DNS:SIGRecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS.utils:CountedDataInputStream-readUnsignedByte__[]->int->DNS.utils:DataByteInputStream-readUnsignedByte__[]->int]
+//[DNS:OPTRecord-OPTRecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:OPTRecord-OPTRecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS:Name-toWireCanonical__[CountedDataOutputStream]->void->DNS:Name-toWireCanonical__[DataByteOutputStream]->void]
+//[DNS:SOARecord-SOARecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:SOARecord-SOARecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS:Record-rrToWire__[Compression, int]->byte[]->DNS:Record-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS:Record-fromWire__[CountedDataInputStream, int, Compression]->Record->DNS:Record-fromWire__[DataByteInputStream, int, Compression]->Record]
+//[DNS:KEYRecord-KEYRecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:KEYRecord-KEYRecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS.utils:CountedDataInputStream-readLong__[]->long->DNS.utils:DataByteInputStream-readLong__[]->long]
+//[DNS:ARecord-rrToWire__[Compression, int]->byte[]->DNS:ARecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS:UNKRecord-UNKRecord__[Name, short, short, int, int, CountedDataInputStream, Compression]->void->DNS:UNKRecord-UNKRecord__[Name, short, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS:SOARecord-rrToWire__[Compression, int]->byte[]->DNS:SOARecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS:Name-toWire__[CountedDataOutputStream, Compression]->void->DNS:Name-toWire__[DataByteOutputStream, Compression]->void]
+//[DNS.utils:CountedDataInputStream-readUnsignedShort__[]->int->DNS.utils:DataByteInputStream-readUnsignedShort__[]->int]
+//[DNS:TXTRecord-rrToWire__[Compression, int]->byte[]->DNS:TXTRecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS:OPTRecord-rrToWire__[Compression, int]->byte[]->DNS:OPTRecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[:jnamed-addAuthority__[Message, Zone]->void->:jnamed-addAuthority__[Message, Name, Zone]->void]
+//[DNS:NS_CNAME_PTRRecord-NS_CNAME_PTRRecord__[Name, short, short, int, int, CountedDataInputStream, Compression]->void->DNS:NS_CNAME_PTRRecord-NS_CNAME_PTRRecord__[Name, short, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS.utils:CountedDataOutputStream-writeString__[String]->void->DNS.utils:DataByteOutputStream-writeString__[String]->void]
+//[DNS:CERTRecord-rrToWire__[Compression, int]->byte[]->DNS:CERTRecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS.utils:CountedDataInputStream-readByte__[]->byte->DNS.utils:DataByteInputStream-readByte__[]->byte]
+//[DNS:HINFORecord-HINFORecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:HINFORecord-HINFORecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS:PTRRecord-PTRRecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:PTRRecord-PTRRecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS:Header-writeFlags__[CountedDataOutputStream]->void->DNS:Header-writeFlags__[DataByteOutputStream]->void]
+//[DNS:CERTRecord-CERTRecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:CERTRecord-CERTRecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS.utils:CountedDataInputStream-readShort__[]->short->DNS.utils:DataByteInputStream-readShort__[]->short]
+//[DNS:TXTRecord-TXTRecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:TXTRecord-TXTRecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS:MXRecord-MXRecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:MXRecord-MXRecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS:SRVRecord-SRVRecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:SRVRecord-SRVRecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS.utils:CountedDataInputStream-readInt__[]->int->DNS.utils:DataByteInputStream-readInt__[]->int]
+//[DNS:MXRecord-rrToWire__[Compression, int]->byte[]->DNS:MXRecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS:NSRecord-NSRecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:NSRecord-NSRecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS:Name-Name__[CountedDataInputStream, Compression]->void->DNS:Name-Name__[DataByteInputStream, Compression]->void]
+//[DNS:NS_CNAME_PTRRecord-rrToWire__[Compression, int]->byte[]->DNS:NS_CNAME_PTRRecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS:UNKRecord-rrToWire__[Compression, int]->byte[]->DNS:UNKRecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS:Record-toWireCanonical__[CountedDataOutputStream]->void->DNS:Record-toWireCanonical__[DataByteOutputStream]->void]
+//[DNS:NXTRecord-rrToWire__[Compression, int]->byte[]->DNS:NXTRecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS:SIGRecord-SIGRecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:SIGRecord-SIGRecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+//[DNS.utils:CountedDataInputStream-read__[byte]->int->DNS.utils:DataByteInputStream-read__[byte]->int]
+//[DNS.utils:CountedDataInputStream-readString__[]->String->DNS.utils:DataByteInputStream-readString__[]->String]
+//[DNS.utils:CountedDataOutputStream-getPos__[]->int->DNS.utils:DataByteOutputStream-getPos__[]->int]
+//[DNS:TSIGRecord-rrToWire__[Compression, int]->byte[]->DNS:TSIGRecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS:Record-newRecord__[Name, short, short, int, int, CountedDataInputStream, Compression]->Record->DNS:Record-newRecord__[Name, short, short, int, int, DataByteInputStream, Compression]->Record]
+//[DNS:KEYRecord-rrToWire__[Compression, int]->byte[]->DNS:KEYRecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS:HINFORecord-rrToWire__[Compression, int]->byte[]->DNS:HINFORecord-rrToWire__[DataByteOutputStream, Compression]->void]
+//[DNS:Header-toWire__[CountedDataOutputStream]->void->DNS:Header-toWire__[DataByteOutputStream]->void]
+//[DNS:Header-Header__[CountedDataInputStream]->void->DNS:Header-Header__[DataByteInputStream]->void]
+//[DNS.utils:CountedDataInputStream-readBigInteger__[int]->BigInteger->DNS.utils:DataByteInputStream-readBigInteger__[int]->BigInteger]
+//[DNS:NXTRecord-NXTRecord__[Name, short, int, int, CountedDataInputStream, Compression]->void->DNS:NXTRecord-NXTRecord__[Name, short, int, int, DataByteInputStream, Compression]->void]
+
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#<init>(java.io%.InputStream)").
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#getPos()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#read(byte[])").
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#readBigInteger(int)").
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#readByte()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#readInt()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#readLong()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#readShort()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#readString()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#readUnsignedByte()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#readUnsignedShort()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#counter","DNS.utils%.CountedDataInputStream#skipBytes(int)").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#<init>(java.io%.InputStream)").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#available()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#read(byte[])").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#readBigInteger(int)").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#readByte()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#readInt()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#readLong()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#readShort()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#readString()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#readUnsignedByte()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#readUnsignedShort()").
+deleted_accesses("DNS.utils%.CountedDataInputStream#in","DNS.utils%.CountedDataInputStream#skipBytes(int)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#counter","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream,int)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#counter","DNS.utils%.CountedDataOutputStream#getPos()").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#counter","DNS.utils%.CountedDataOutputStream#write(byte[])").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#counter","DNS.utils%.CountedDataOutputStream#write(byte[],int,int)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#counter","DNS.utils%.CountedDataOutputStream#writeByte(int)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#counter","DNS.utils%.CountedDataOutputStream#writeInt(int)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#counter","DNS.utils%.CountedDataOutputStream#writeLong(long)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#counter","DNS.utils%.CountedDataOutputStream#writeShort(int)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#counter","DNS.utils%.CountedDataOutputStream#writeString(java.lang%.String)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#out","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream,int)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#out","DNS.utils%.CountedDataOutputStream#write(byte[])").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#out","DNS.utils%.CountedDataOutputStream#write(byte[],int,int)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#out","DNS.utils%.CountedDataOutputStream#writeByte(int)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#out","DNS.utils%.CountedDataOutputStream#writeInt(int)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#out","DNS.utils%.CountedDataOutputStream#writeLong(long)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#out","DNS.utils%.CountedDataOutputStream#writeShort(int)").
+deleted_accesses("DNS.utils%.CountedDataOutputStream#out","DNS.utils%.CountedDataOutputStream#writeString(java.lang%.String)").
+deleted_accesses("java.lang%.System#out","%.update#doAdd(DNS%.MyStringTokenizer)").
+deleted_accesses("java.lang%.System#out","%.update#doAssert(DNS%.MyStringTokenizer)").
+deleted_accesses("java.lang%.System#out","%.update#doDelete(DNS%.MyStringTokenizer)").
+deleted_accesses("java.lang%.System#out","%.update#doFile(DNS%.MyStringTokenizer,java.util%.Vector)").
+deleted_accesses("java.lang%.System#out","%.update#doGlue(DNS%.MyStringTokenizer)").
+deleted_accesses("java.lang%.System#out","%.update#doProhibit(DNS%.MyStringTokenizer)").
+deleted_accesses("java.lang%.System#out","%.update#doQuery(DNS%.MyStringTokenizer)").
+deleted_accesses("java.lang%.System#out","%.update#doRequire(DNS%.MyStringTokenizer)").
+deleted_accesses("java.lang%.System#out","%.update#sendUpdate()").
+deleted_calls("%.update#<init>(java.io%.InputStream)","java.lang%.Integer#parseInt(java.lang%.String)").
+deleted_calls("%.update#doAdd(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.Object)").
+deleted_calls("%.update#doAdd(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.String)").
+deleted_calls("%.update#doAssert(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.String)").
+deleted_calls("%.update#doDelete(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.Object)").
+deleted_calls("%.update#doDelete(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.String)").
+deleted_calls("%.update#doFile(DNS%.MyStringTokenizer,java.util%.Vector)","java.io%.PrintStream#println(java.lang%.String)").
+deleted_calls("%.update#doGlue(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.Object)").
+deleted_calls("%.update#doGlue(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.String)").
+deleted_calls("%.update#doProhibit(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.Object)").
+deleted_calls("%.update#doProhibit(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.String)").
+deleted_calls("%.update#doQuery(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.Object)").
+deleted_calls("%.update#doRequire(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.Object)").
+deleted_calls("%.update#doRequire(DNS%.MyStringTokenizer)","java.io%.PrintStream#println(java.lang%.String)").
+deleted_calls("%.update#parseRR(DNS%.MyStringTokenizer,short,int)","java.lang%.Integer#parseInt(java.lang%.String)").
+deleted_calls("%.update#sendUpdate()","java.io%.PrintStream#println(java.lang%.Object)").
+deleted_calls("%.update#sendUpdate()","java.io%.PrintStream#println(java.lang%.String)").
+deleted_calls("DNS%.ARecord#<init>(DNS%.Name,short,int,int,DNS.utils%.CountedDataInputStream,DNS%.Compression)","DNS.utils%.CountedDataInputStream#read(byte[])").
+deleted_calls("DNS%.CERTRecord#<init>(DNS%.Name,short,int,int,DNS.utils%.CountedDataInputStream,DNS%.Compression)","DNS.utils%.CountedDataInputStream#read(byte[])").
+deleted_calls("DNS%.CERTRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream)").
+deleted_calls("DNS%.CERTRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#write(byte[])").
+deleted_calls("DNS%.CERTRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.CERTRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.HINFORecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream)").
+deleted_calls("DNS%.HINFORecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.HINFORecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.Header#toWire()","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.KEYRecord#<init>(DNS%.Name,short,int,int,DNS.utils%.CountedDataInputStream,DNS%.Compression)","DNS.utils%.CountedDataInputStream#read(byte[])").
+deleted_calls("DNS%.KEYRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream)").
+deleted_calls("DNS%.KEYRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#write(byte[])").
+deleted_calls("DNS%.KEYRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.KEYRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.MXRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream)").
+deleted_calls("DNS%.MXRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.MXRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.Message#<init>(byte[])","DNS.utils%.CountedDataInputStream#<init>(java.io%.InputStream)").
+deleted_calls("DNS%.Message#<init>(byte[])","java.io%.ByteArrayInputStream#<init>(byte[])").
+deleted_calls("DNS%.Message#toWire()","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.NS_CNAME_PTRRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream,int)").
+deleted_calls("DNS%.NS_CNAME_PTRRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.NS_CNAME_PTRRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.NXTRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream)").
+deleted_calls("DNS%.NXTRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.NXTRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.Name#<init>(DNS.utils%.CountedDataInputStream,DNS%.Compression)","DNS.utils%.CountedDataInputStream#read(byte[])").
+deleted_calls("DNS%.OPTRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream)").
+deleted_calls("DNS%.OPTRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.OPTRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.Record#newRecord(DNS%.Name,short,short,int,int,byte[])","DNS.utils%.CountedDataInputStream#<init>(java.io%.InputStream)").
+deleted_calls("DNS%.Record#newRecord(DNS%.Name,short,short,int,int,byte[])","java.io%.ByteArrayInputStream#<init>(byte[])").
+deleted_calls("DNS%.Record#toWire(DNS.utils%.CountedDataOutputStream,int,DNS%.Compression)","DNS.utils%.CountedDataOutputStream#write(byte[])").
+deleted_calls("DNS%.Record#toWire(int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.Record#toWireCanonical(DNS.utils%.CountedDataOutputStream)","DNS.utils%.CountedDataOutputStream#write(byte[])").
+deleted_calls("DNS%.SIGRecord#<init>(DNS%.Name,short,int,int,DNS.utils%.CountedDataInputStream,DNS%.Compression)","DNS.utils%.CountedDataInputStream#read(byte[])").
+deleted_calls("DNS%.SIGRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream)").
+deleted_calls("DNS%.SIGRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#write(byte[])").
+deleted_calls("DNS%.SIGRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.SIGRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.SOARecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream,int)").
+deleted_calls("DNS%.SOARecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.SOARecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.SRVRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream)").
+deleted_calls("DNS%.SRVRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.SRVRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.TSIG#apply(DNS%.Message)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.TSIG#verify(DNS%.Message,byte[],DNS%.TSIGRecord)","DNS.utils%.CountedDataOutputStream#write(byte[])").
+deleted_calls("DNS%.TSIG#verify(DNS%.Message,byte[],DNS%.TSIGRecord)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.TSIG#verifyAXFR(DNS%.Message,byte[],DNS%.TSIGRecord,boolean,boolean)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.TSIGRecord#<init>(DNS%.Name,short,int,int,DNS.utils%.CountedDataInputStream,DNS%.Compression)","DNS.utils%.CountedDataInputStream#read(byte[])").
+deleted_calls("DNS%.TSIGRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream)").
+deleted_calls("DNS%.TSIGRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#write(byte[])").
+deleted_calls("DNS%.TSIGRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.TSIGRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.TSIGRecord#toString()","java.io%.ByteArrayInputStream#<init>(byte[])").
+deleted_calls("DNS%.TSIGRecord#toString()","java.io%.DataInputStream#<init>(java.io%.InputStream)").
+deleted_calls("DNS%.TSIGRecord#toString()","java.io%.DataInputStream#readInt()").
+deleted_calls("DNS%.TSIGRecord#toString()","java.io%.DataInputStream#readUnsignedShort()").
+deleted_calls("DNS%.TXTRecord#<init>(DNS%.Name,short,int,int,DNS.utils%.CountedDataInputStream,DNS%.Compression)","DNS.utils%.CountedDataInputStream#read(byte[])").
+deleted_calls("DNS%.TXTRecord#rrToWire(DNS%.Compression,int)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream)").
+deleted_calls("DNS%.TXTRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#<init>()").
+deleted_calls("DNS%.TXTRecord#rrToWire(DNS%.Compression,int)","java.io%.ByteArrayOutputStream#toByteArray()").
+deleted_calls("DNS%.UNKRecord#<init>(DNS%.Name,short,short,int,int,DNS.utils%.CountedDataInputStream,DNS%.Compression)","DNS.utils%.CountedDataInputStream#read(byte[])").
+deleted_calls("DNS%.Zone#parseRR(DNS%.MyStringTokenizer,boolean,DNS%.Record,DNS%.Name)","java.lang%.Integer#parseInt(java.lang%.String)").
+deleted_calls("DNS.utils%.CountedDataInputStream#<init>(java.io%.InputStream)","java.io%.DataInputStream#<init>(java.io%.InputStream)").
+deleted_calls("DNS.utils%.CountedDataInputStream#available()","java.io%.FilterInputStream#available()").
+deleted_calls("DNS.utils%.CountedDataInputStream#read(byte[])","java.io%.DataInputStream#readFully(byte[])").
+deleted_calls("DNS.utils%.CountedDataInputStream#readBigInteger(int)","java.io%.DataInputStream#read(byte[],int,int)").
+deleted_calls("DNS.utils%.CountedDataInputStream#readByte()","java.io%.DataInputStream#readByte()").
+deleted_calls("DNS.utils%.CountedDataInputStream#readInt()","java.io%.DataInputStream#readInt()").
+deleted_calls("DNS.utils%.CountedDataInputStream#readLong()","java.io%.DataInputStream#readLong()").
+deleted_calls("DNS.utils%.CountedDataInputStream#readShort()","java.io%.DataInputStream#readShort()").
+deleted_calls("DNS.utils%.CountedDataInputStream#readString()","java.io%.DataInputStream#readByte()").
+deleted_calls("DNS.utils%.CountedDataInputStream#readString()","java.io%.DataInputStream#readFully(byte[])").
+deleted_calls("DNS.utils%.CountedDataInputStream#readUnsignedByte()","java.io%.DataInputStream#readUnsignedByte()").
+deleted_calls("DNS.utils%.CountedDataInputStream#readUnsignedShort()","java.io%.DataInputStream#readUnsignedShort()").
+deleted_calls("DNS.utils%.CountedDataInputStream#skipBytes(int)","java.io%.DataInputStream#skipBytes(int)").
+deleted_calls("DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream)","DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream,int)").
+deleted_calls("DNS.utils%.CountedDataOutputStream#<init>(java.io%.OutputStream,int)","java.io%.DataOutputStream#<init>(java.io%.OutputStream)").
+deleted_calls("DNS.utils%.CountedDataOutputStream#write(byte[])","java.io%.FilterOutputStream#write(byte[])").
+deleted_calls("DNS.utils%.CountedDataOutputStream#write(byte[],int,int)","java.io%.DataOutputStream#write(byte[],int,int)").
+deleted_calls("DNS.utils%.CountedDataOutputStream#writeByte(int)","java.io%.DataOutputStream#writeByte(int)").
+deleted_calls("DNS.utils%.CountedDataOutputStream#writeInt(int)","java.io%.DataOutputStream#writeInt(int)").
+deleted_calls("DNS.utils%.CountedDataOutputStream#writeLong(long)","java.io%.DataOutputStream#writeLong(long)").
+deleted_calls("DNS.utils%.CountedDataOutputStream#writeShort(int)","java.io%.DataOutputStream#writeShort(int)").
+deleted_calls("DNS.utils%.CountedDataOutputStream#writeString(java.lang%.String)","java.io%.DataOutputStream#writeByte(int)").
+deleted_calls("DNS.utils%.CountedDataOutputStream#writeString(java.lang%.String)","java.io%.FilterOutputStream#write(byte[])").
+deleted_field("DNS.utils%.CountedDataInputStream#counter","counter","DNS.utils%.CountedDataInputStream").
+deleted_field("DNS.utils%.CountedDataInputStream#in","in","DNS.utils%.CountedDataInputStream").
+deleted_field("DNS.utils%.CountedDataOutputStream#counter","counter","DNS.utils%.CountedDataOutputStream").
+deleted_field("DNS.utils%.CountedDataOutputStream#out","out","DNS.utils%.CountedDataOutputStream").
+deleted_fieldoftype("DNS.utils%.CountedDataInputStream#counter","int").
+deleted_fieldoftype("DNS.utils%.CountedDataInputStream#in","java.io%.DataInputStream").
+deleted_fieldoftype("DNS.utils%.CountedDataOutputStream#counter","int").
+deleted_fieldoftype("DNS.utils%.CountedDataOutputStream#out","java.io%.DataOutputStream").
+deleted_method("DNS.utils%.CountedDataInputStream#<init>(java.io%.InputStream)","<init>(java.io%.InputStream)","DNS.utils%.CountedDataInputStream").
+deleted_method("DNS.utils%.CountedDataInputStream#read(byte[])","read(byte[])","DNS.utils%.CountedDataInputStream").
+deleted_method("DNS.utils%.CountedDataOutputStream#write(byte[])","write(byte[])","DNS.utils%.CountedDataOutputStream").
+deleted_method("DNS.utils%.CountedDataOutputStream#write(byte[],int,int)","write(byte[],int,int)","DNS.utils%.CountedDataOutputStream").
+deleted_return("DNS%.ARecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.CERTRecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.HINFORecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.KEYRecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.MXRecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.NS_CNAME_PTRRecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.NXTRecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.OPTRecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.Record#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.SIGRecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.SOARecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.SRVRecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.TSIGRecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.TXTRecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS%.UNKRecord#rrToWire(DNS%.Compression,int)","byte[]").
+deleted_return("DNS.utils%.CountedDataInputStream#<init>(java.io%.InputStream)","void").
+deleted_return("DNS.utils%.CountedDataInputStream#read(byte[])","int").
+deleted_return("DNS.utils%.CountedDataInputStream#skipBytes(int)","int").
+deleted_return("DNS.utils%.CountedDataOutputStream#write(byte[])","void").
+deleted_return("DNS.utils%.CountedDataOutputStream#write(byte[],int,int)","void").
+deleted_subtype("java.lang%.Object","DNS.utils%.CountedDataInputStream").
+deleted_subtype("java.lang%.Object","DNS.utils%.CountedDataOutputStream").
+added_accesses("%.update#log","%.update#<init>(java.io%.InputStream)").
+added_accesses("%.update#log","%.update#doLog(DNS%.MyStringTokenizer)").
+added_accesses("%.update#log","%.update#print(java.lang%.Object)").
+added_accesses("DNS%.DClass#IN","%.jnamed#addAuthority(DNS%.Message,DNS%.Name,DNS%.Zone)").
+added_accesses("DNS%.Record#ttl","DNS%.Record#getTTL()").
+added_accesses("java.io%.ByteArrayInputStream#pos","DNS.utils%.DataByteInputStream#getPos()").
+added_accesses("java.io%.ByteArrayOutputStream#count","DNS.utils%.DataByteOutputStream#getPos()").
+added_accesses("java.io%.ByteArrayOutputStream#count","DNS.utils%.DataByteOutputStream#writeShortAt(int,int)").
+added_accesses("java.lang%.System#in","%.update#doFile(DNS%.MyStringTokenizer,java.util%.Vector,java.util%.Vector)").
+added_accesses("java.lang%.System#out","%.update#print(java.lang%.Object)").
+added_accesses("java.lang%.System#out","DNS%.TTL#main(java.lang%.String[])").
+added_calls("%.jnamed#addAuthority(DNS%.Message,DNS%.Name,DNS%.Zone)","%.jnamed#findExactMatch(DNS%.Name,short,short)").
+added_calls("%.update#<init>(java.io%.InputStream)","%.update#doLog(DNS%.MyStringTokenizer)").
+added_calls("%.update#<init>(java.io%.InputStream)","%.update#print(java.lang%.Object)").
+added_calls("%.update#<init>(java.io%.InputStream)","DNS%.TTL#parseTTL(java.lang%.String)").
+added_calls("%.update#<init>(java.io%.InputStream)","java.io%.PrintStream#close()").
+added_calls("%.update#<init>(java.io%.InputStream)","java.lang%.String#substring(int)").
+added_calls("%.update#<init>(java.io%.InputStream)","java.util%.Enumeration#hasMoreElements()").
+added_calls("%.update#<init>(java.io%.InputStream)","java.util%.Enumeration#nextElement()").
+added_calls("%.update#<init>(java.io%.InputStream)","java.util%.Vector#elements()").
+added_calls("%.update#doAdd(DNS%.MyStringTokenizer)","%.update#print(java.lang%.Object)").
+added_calls("%.update#doAssert(DNS%.MyStringTokenizer)","%.update#print(java.lang%.Object)").
+added_calls("%.update#doDelete(DNS%.MyStringTokenizer)","%.update#print(java.lang%.Object)").
+added_calls("%.update#doFile(DNS%.MyStringTokenizer,java.util%.Vector,java.util%.Vector)","%.update#print(java.lang%.Object)").
+added_calls("%.update#doFile(DNS%.MyStringTokenizer,java.util%.Vector,java.util%.Vector)","java.lang%.String#equals(java.lang%.Object)").
+added_calls("%.update#doGlue(DNS%.MyStringTokenizer)","%.update#print(java.lang%.Object)").
+added_calls("%.update#doLog(DNS%.MyStringTokenizer)","%.update#print(java.lang%.Object)").
+added_calls("%.update#doLog(DNS%.MyStringTokenizer)","DNS%.MyStringTokenizer#nextToken()").
+added_calls("%.update#doLog(DNS%.MyStringTokenizer)","java.io%.FileOutputStream#<init>(java.lang%.String)").
+added_calls("%.update#doLog(DNS%.MyStringTokenizer)","java.io%.PrintStream#<init>(java.io%.OutputStream)").
+added_calls("%.update#doProhibit(DNS%.MyStringTokenizer)","%.update#print(java.lang%.Object)").
+added_calls("%.update#doQuery(DNS%.MyStringTokenizer)","%.update#print(java.lang%.Object)").
+added_calls("%.update#doRequire(DNS%.MyStringTokenizer)","%.update#print(java.lang%.Object)").
+added_calls("%.update#parseRR(DNS%.MyStringTokenizer,short,int)","DNS%.TTL#parseTTL(java.lang%.String)").
+added_calls("%.update#print(java.lang%.Object)","java.io%.PrintStream#println(java.lang%.Object)").
+added_calls("%.update#sendUpdate()","%.update#print(java.lang%.Object)").
+added_calls("DNS%.ARecord#<init>(DNS%.Name,short,int,int,DNS.utils%.DataByteInputStream,DNS%.Compression)","DNS.utils%.DataByteInputStream#read(byte[])").
+added_calls("DNS%.ARecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","java.io%.OutputStream#write(byte[])").
+added_calls("DNS%.CERTRecord#<init>(DNS%.Name,short,int,int,DNS.utils%.DataByteInputStream,DNS%.Compression)","DNS.utils%.DataByteInputStream#read(byte[])").
+added_calls("DNS%.CERTRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","java.io%.OutputStream#write(byte[])").
+added_calls("DNS%.KEYRecord#<init>(DNS%.Name,short,int,int,DNS.utils%.DataByteInputStream,DNS%.Compression)","DNS.utils%.DataByteInputStream#read(byte[])").
+added_calls("DNS%.KEYRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","java.io%.OutputStream#write(byte[])").
+added_calls("DNS%.Message#<init>(byte[])","DNS.utils%.DataByteInputStream#<init>(byte[])").
+added_calls("DNS%.Name#<init>(DNS.utils%.DataByteInputStream,DNS%.Compression)","DNS.utils%.DataByteInputStream#read(byte[])").
+added_calls("DNS%.Record#newRecord(DNS%.Name,short,short,int,int,byte[])","DNS.utils%.DataByteInputStream#<init>(byte[])").
+added_calls("DNS%.Record#rrToWireCanonical()","DNS.utils%.DataByteOutputStream#<init>()").
+added_calls("DNS%.Record#rrToWireCanonical()","java.io%.ByteArrayOutputStream#toByteArray()").
+added_calls("DNS%.Record#toWire(DNS.utils%.DataByteOutputStream,int,DNS%.Compression)","DNS.utils%.DataByteOutputStream#writeShortAt(int,int)").
+added_calls("DNS%.Record#toWireCanonical(DNS.utils%.DataByteOutputStream)","java.io%.OutputStream#write(byte[])").
+added_calls("DNS%.SIGRecord#<init>(DNS%.Name,short,int,DNS%.MyStringTokenizer,DNS%.Name)","DNS%.TTL#parseTTL(java.lang%.String)").
+added_calls("DNS%.SIGRecord#<init>(DNS%.Name,short,int,int,DNS.utils%.DataByteInputStream,DNS%.Compression)","DNS.utils%.DataByteInputStream#read(byte[])").
+added_calls("DNS%.SIGRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","java.io%.OutputStream#write(byte[])").
+added_calls("DNS%.SOARecord#<init>(DNS%.Name,short,int,DNS%.MyStringTokenizer,DNS%.Name)","DNS%.TTL#parseTTL(java.lang%.String)").
+added_calls("DNS%.TSIG#verify(DNS%.Message,byte[],DNS%.TSIGRecord)","java.io%.OutputStream#write(byte[])").
+added_calls("DNS%.TSIGRecord#<init>(DNS%.Name,short,int,int,DNS.utils%.DataByteInputStream,DNS%.Compression)","DNS.utils%.DataByteInputStream#read(byte[])").
+added_calls("DNS%.TSIGRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","java.io%.OutputStream#write(byte[])").
+added_calls("DNS%.TSIGRecord#toString()","DNS.utils%.DataByteInputStream#<init>(byte[])").
+added_calls("DNS%.TSIGRecord#toString()","DNS.utils%.DataByteInputStream#readInt()").
+added_calls("DNS%.TSIGRecord#toString()","DNS.utils%.DataByteInputStream#readUnsignedShort()").
+added_calls("DNS%.TTL#main(java.lang%.String[])","DNS%.TTL#parseTTL(java.lang%.String)").
+added_calls("DNS%.TTL#main(java.lang%.String[])","java.io%.PrintStream#println(java.lang%.String)").
+added_calls("DNS%.TTL#parseTTL(java.lang%.String)","java.lang%.Character#getNumericValue(char)").
+added_calls("DNS%.TTL#parseTTL(java.lang%.String)","java.lang%.Character#isDigit(char)").
+added_calls("DNS%.TTL#parseTTL(java.lang%.String)","java.lang%.Character#toUpperCase(char)").
+added_calls("DNS%.TTL#parseTTL(java.lang%.String)","java.lang%.NumberFormatException#<init>()").
+added_calls("DNS%.TTL#parseTTL(java.lang%.String)","java.lang%.String#charAt(int)").
+added_calls("DNS%.TTL#parseTTL(java.lang%.String)","java.lang%.String#length()").
+added_calls("DNS%.TXTRecord#<init>(DNS%.Name,short,int,int,DNS.utils%.DataByteInputStream,DNS%.Compression)","DNS.utils%.DataByteInputStream#read(byte[])").
+added_calls("DNS%.UNKRecord#<init>(DNS%.Name,short,short,int,int,DNS.utils%.DataByteInputStream,DNS%.Compression)","DNS.utils%.DataByteInputStream#read(byte[])").
+added_calls("DNS%.UNKRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","java.io%.OutputStream#write(byte[])").
+added_calls("DNS%.Zone#parseRR(DNS%.MyStringTokenizer,boolean,DNS%.Record,DNS%.Name)","DNS%.TTL#parseTTL(java.lang%.String)").
+added_calls("DNS.utils%.DataByteInputStream#<init>(byte[])","java.io%.ByteArrayInputStream#<init>(byte[])").
+added_calls("DNS.utils%.DataByteInputStream#available()","DNS.utils%.DataByteInputStream#available()").
+added_calls("DNS.utils%.DataByteInputStream#read(byte[])","java.io%.ByteArrayInputStream#read(byte[],int,int)").
+added_calls("DNS.utils%.DataByteInputStream#readBigInteger(int)","java.io%.ByteArrayInputStream#read(byte[],int,int)").
+added_calls("DNS.utils%.DataByteInputStream#readByte()","java.io%.ByteArrayInputStream#read()").
+added_calls("DNS.utils%.DataByteInputStream#readInt()","java.io%.ByteArrayInputStream#read()").
+added_calls("DNS.utils%.DataByteInputStream#readLong()","java.io%.ByteArrayInputStream#read()").
+added_calls("DNS.utils%.DataByteInputStream#readShort()","java.io%.ByteArrayInputStream#read()").
+added_calls("DNS.utils%.DataByteInputStream#readString()","DNS.utils%.DataByteInputStream#read(byte[])").
+added_calls("DNS.utils%.DataByteInputStream#readString()","java.io%.ByteArrayInputStream#read()").
+added_calls("DNS.utils%.DataByteInputStream#readUnsignedByte()","java.io%.ByteArrayInputStream#read()").
+added_calls("DNS.utils%.DataByteInputStream#readUnsignedShort()","java.io%.ByteArrayInputStream#read()").
+added_calls("DNS.utils%.DataByteInputStream#skipBytes(int)","java.io%.ByteArrayInputStream#skip(long)").
+added_calls("DNS.utils%.DataByteOutputStream#<init>()","java.io%.ByteArrayOutputStream#<init>()").
+added_calls("DNS.utils%.DataByteOutputStream#<init>(int)","java.io%.ByteArrayOutputStream#<init>(int)").
+added_calls("DNS.utils%.DataByteOutputStream#writeBigInteger(java.math%.BigInteger)","java.io%.ByteArrayOutputStream#write(byte[],int,int)").
+added_calls("DNS.utils%.DataByteOutputStream#writeBigInteger(java.math%.BigInteger)","java.io%.OutputStream#write(byte[])").
+added_calls("DNS.utils%.DataByteOutputStream#writeBigInteger(java.math%.BigInteger)","java.math%.BigInteger#toByteArray()").
+added_calls("DNS.utils%.DataByteOutputStream#writeByte(int)","java.io%.ByteArrayOutputStream#write(int)").
+added_calls("DNS.utils%.DataByteOutputStream#writeInt(int)","java.io%.ByteArrayOutputStream#write(int)").
+added_calls("DNS.utils%.DataByteOutputStream#writeLong(long)","java.io%.ByteArrayOutputStream#write(int)").
+added_calls("DNS.utils%.DataByteOutputStream#writeShort(int)","java.io%.ByteArrayOutputStream#write(int)").
+added_calls("DNS.utils%.DataByteOutputStream#writeShortAt(int,int)","DNS.utils%.DataByteOutputStream#writeShort(int)").
+added_calls("DNS.utils%.DataByteOutputStream#writeShortAt(int,int)","java.lang%.IllegalArgumentException#<init>(java.lang%.String)").
+added_calls("DNS.utils%.DataByteOutputStream#writeString(java.lang%.String)","java.io%.ByteArrayOutputStream#write(int)").
+added_calls("DNS.utils%.DataByteOutputStream#writeString(java.lang%.String)","java.io%.OutputStream#write(byte[])").
+added_field("%.update#log","log","%.update").
+added_fieldoftype("%.update#log","java.io%.PrintStream").
+added_method("%.update#doLog(DNS%.MyStringTokenizer)","doLog(DNS%.MyStringTokenizer)","%.update").
+added_method("%.update#print(java.lang%.Object)","print(java.lang%.Object)","%.update").
+added_method("DNS%.Record#getTTL()","getTTL()","DNS%.Record").
+added_method("DNS%.TTL#<init>()","<init>()","DNS%.TTL").
+added_method("DNS%.TTL#main(java.lang%.String[])","main(java.lang%.String[])","DNS%.TTL").
+added_method("DNS%.TTL#parseTTL(java.lang%.String)","parseTTL(java.lang%.String)","DNS%.TTL").
+added_method("DNS.utils%.DataByteInputStream#<init>(byte[])","<init>(byte[])","DNS.utils%.DataByteInputStream").
+added_method("DNS.utils%.DataByteInputStream#read(byte[])","read(byte[])","DNS.utils%.DataByteInputStream").
+added_method("DNS.utils%.DataByteOutputStream#writeBigInteger(java.math%.BigInteger)","writeBigInteger(java.math%.BigInteger)","DNS.utils%.DataByteOutputStream").
+added_method("DNS.utils%.DataByteOutputStream#writeShortAt(int,int)","writeShortAt(int,int)","DNS.utils%.DataByteOutputStream").
+added_return("%.update#doLog(DNS%.MyStringTokenizer)","void").
+added_return("%.update#print(java.lang%.Object)","void").
+added_return("DNS%.ARecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.CERTRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.HINFORecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.KEYRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.MXRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.NS_CNAME_PTRRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.NXTRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.OPTRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.Record#getTTL()","int").
+added_return("DNS%.Record#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.SIGRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.SOARecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.SRVRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.TSIGRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.TTL#<init>()","void").
+added_return("DNS%.TTL#main(java.lang%.String[])","void").
+added_return("DNS%.TTL#parseTTL(java.lang%.String)","int").
+added_return("DNS%.TXTRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS%.UNKRecord#rrToWire(DNS.utils%.DataByteOutputStream,DNS%.Compression)","void").
+added_return("DNS.utils%.DataByteInputStream#<init>(byte[])","void").
+added_return("DNS.utils%.DataByteInputStream#read(byte[])","int").
+added_return("DNS.utils%.DataByteInputStream#skipBytes(int)","void").
+added_return("DNS.utils%.DataByteOutputStream#writeBigInteger(java.math%.BigInteger)","void").
+added_return("DNS.utils%.DataByteOutputStream#writeShortAt(int,int)","void").
+added_subtype("java.io%.ByteArrayInputStream","DNS.utils%.DataByteInputStream").
+added_subtype("java.io%.ByteArrayOutputStream","DNS.utils%.DataByteOutputStream").
+added_subtype("java.lang%.Object","DNS%.TTL").
+added_type("DNS%.TTL","TTL","DNS").
