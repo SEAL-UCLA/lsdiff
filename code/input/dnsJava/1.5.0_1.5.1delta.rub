@@ -1,6 +1,0 @@
-#include "deltaKB_lsdPred.rub"
-// Orig. Deleted	0
-// Orig. Added	1
-// Red. Deleted	0
-// Red. Added	1
-added_calls("org.xbill.DNS%.Master#nextRecord()","org.xbill.DNS%.Tokenizer#unget()").
